@@ -1,0 +1,22 @@
+{
+    "name": "AFN para cadenas con 'a' en la tercera posición desde el final",
+    "type": "NFA",
+    "states": ["q0", "q1", "q2", "q3"],
+    "alphabet": ["a", "b"],
+    "transitions": {
+        "q0": {
+            "a": ["q0", "q1"],
+            "b": ["q0"]
+        },
+        "q1": {
+            "a": ["q2"],
+            "b": ["q2"]
+        },
+        "q2": {
+            "a": ["q3"],
+            "b": ["q3"]
+        }
+    },
+    "initial_state": "q0",
+    "final_states": ["q3"]
+}
