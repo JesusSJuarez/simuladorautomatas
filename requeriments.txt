@@ -1,0 +1,8 @@
+# Dependencias principales
+tkinter>=8.6  # Biblioteca gráfica (normalmente incluida en Python estándar)
+pillow>=9.0.0  # Para manejo de imágenes (opcional si añades exportación a PNG)
+pywin32>=300  # Para mejor soporte de Tkinter en Windows
+
+# Dependencias adicionales (solo si implementas estas características)
+networkx>=2.6  # Para algoritmos avanzados de gráficos (opcional)
+matplotlib>=3.5  # Para visualizaciones alternativas (opcional)
