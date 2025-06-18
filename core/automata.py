@@ -62,4 +62,3 @@ class Automata:
         for symbol in input_string:
             self.step(symbol)
         return self.is_accepted()
-    

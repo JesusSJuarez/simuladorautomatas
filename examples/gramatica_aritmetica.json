@@ -1,0 +1,12 @@
+{
+    "name": "Gramática para expresiones aritméticas",
+    "type": "CFG",
+    "variables": ["E", "T", "F"],
+    "terminals": ["id", "+", "*", "(", ")"],
+    "productions": {
+        "E": ["E+T", "T"],
+        "T": ["T*F", "F"],
+        "F": ["(E)", "id"]
+    },
+    "start": "E"
+}

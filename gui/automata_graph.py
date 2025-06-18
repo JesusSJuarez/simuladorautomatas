@@ -13,13 +13,12 @@ class AutomataGraph:
         self.highlighted_states = set()
         
     def calculate_layout(self, states: List[str], transitions: Dict, initial_state: str, final_states: List[str]):
-        """Calcula posiciones óptimas para los nodos usando un algoritmo circular"""
+        """Calcula posiciones para los nodos usando algoritmo circular"""
         self.state_positions = {}
         center_x = self.canvas.winfo_width() / 2
         center_y = self.canvas.winfo_height() / 2
         radius = min(center_x, center_y) * 0.7
         
-        # Posicionamiento circular para los estados
         angle_step = 2 * math.pi / len(states)
         for i, state in enumerate(states):
             angle = i * angle_step
@@ -27,37 +26,24 @@ class AutomataGraph:
             y = center_y + radius * math.sin(angle)
             self.state_positions[state] = (x, y)
             
-        # Ajustar posiciones para transiciones frecuentes
-        self._optimize_layout(transitions)
+    def draw_automata(self, states: List[str], transitions: Dict, initial_state: str, final_states: List[str]):
+        """Dibuja todo el autómata en el canvas"""
+        self.canvas.delete("all")
+        self.calculate_layout(states, transitions, initial_state, final_states)
+        self._draw_transitions(transitions)
+        
+        for state, pos in self.state_positions.items():
+            self._draw_state(state, pos, state in final_states)
+            
+        if initial_state in self.state_positions:
+            self._draw_initial_marker(initial_state)
+        
         
     def _optimize_layout(self, transitions: Dict):
         """Mejora el layout basado en la frecuencia de transiciones"""
         # Implementación básica - podrías usar un algoritmo más sofisticado como force-directed
         pass
         
-    def draw_automata(self, states: List[str], transitions: Dict, initial_state: str, final_states: List[str]):
-        """Dibuja todo el autómata en el canvas"""
-        self.canvas.delete("all")
-        self.calculate_layout(states, transitions, initial_state, final_states)
-        
-        # Dibujar transiciones primero (para que queden detrás de los nodos)
-        self._draw_transitions(transitions)
-        
-        # Dibujar los estados
-        for state, pos in self.state_positions.items():
-            self._draw_state(state, pos, state in final_states)
-            
-        # Dibujar marcador de estado inicial
-        if initial_state in self.state_positions:
-            self._draw_initial_marker(initial_state)
-            
-        # Resaltar estado inicial al cargar
-        self.highlight_states({initial_state})
-            
-        # Resaltar estados si es necesario
-        for state in self.highlighted_states:
-            if state in self.state_positions:
-                self.highlight_states(state)
                 
     def _draw_state(self, state: str, pos: Tuple[float, float], is_final: bool):
         """Dibuja un estado individual"""
