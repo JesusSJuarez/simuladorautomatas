@@ -1,3 +1,0 @@
-# Dependencias
-networkx>=2.6  # Para algoritmos avanzados de gráficos
-matplotlib>=3.5  # Para visualizaciones alternativas

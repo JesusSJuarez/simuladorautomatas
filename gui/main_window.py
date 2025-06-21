@@ -1,46 +1,21 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
-from core.automata import Automata
-from core.simulator import AutomataSimulator
-from core.file_handler import FileHandler
-from .automata_graph import AutomataGraph
-from .grammar_window import GrammarWindow
+from simuladorautomatas.automata import Automata
+from simuladorautomatas.simulator import AutomataSimulator
+from .graph import AutomataGraph
+from simuladorautomatas.file_handler import AutomataFileHandler
 import os
 
 class MainWindow(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Simulador de Autómatas y Gramáticas")
+        self.title("Simulador de Autómatas")
         self.geometry("1000x700")
         self.simulator = AutomataSimulator()
         
         self.create_widgets()
         self.setup_layout()
         self.setup_event_bindings()
-        self.setup_menu()
-        
-    def setup_menu(self):
-        menubar = tk.Menu(self)
-        
-        # Menú Archivo
-        file_menu = tk.Menu(menubar, tearoff=0)
-        file_menu.add_command(label="Cargar Autómata", command=self.load_automata_from_file)
-        file_menu.add_command(label="Guardar Autómata", command=self.save_automata_to_file)
-        file_menu.add_separator()
-        file_menu.add_command(label="Salir", command=self.quit)
-        menubar.add_cascade(label="Archivo", menu=file_menu)
-        
-        # Menú Gramáticas
-        grammar_menu = tk.Menu(menubar, tearoff=0)
-        grammar_menu.add_command(label="Simular Gramática", command=self.open_grammar_window)
-        menubar.add_cascade(label="Gramáticas", menu=grammar_menu)
-        
-        self.config(menu=menubar)
-        
-    def open_grammar_window(self):
-        """Abre la ventana de simulación de gramáticas"""
-        grammar_window = GrammarWindow(self)
-        grammar_window.grab_set()
         
     def create_widgets(self):
         # Panel de control
@@ -256,7 +231,7 @@ class MainWindow(tk.Tk):
         
         if file_path:
             try:
-                automata = FileHandler.load_automata(file_path)
+                automata = AutomataFileHandler.load_automata_from_file(file_path)
                 self.simulator.load_automata(automata)
                 self.update_automata_info()
                 self.draw_automata()
@@ -283,7 +258,7 @@ class MainWindow(tk.Tk):
         if file_path:
             try:
                 name = os.path.splitext(os.path.basename(file_path))[0]
-                FileHandler.save_automata(self.simulator.automata, file_path, name)
+                AutomataFileHandler.save_automata_to_file(self.simulator.automata, file_path, name)
                 messagebox.showinfo("Éxito", "Autómata guardado correctamente")
             except Exception as e:
                 messagebox.showerror("Error", f"No se pudo guardar el autómata:\n{str(e)}")
