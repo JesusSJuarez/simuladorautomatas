@@ -1,14 +1,13 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
-from simuladorautomatas.automata import Automata
-from simuladorautomatas.simulator import AutomataSimulator
-from .graph import AutomataGraph
-from simuladorautomatas.file_handler import AutomataFileHandler
+from core.simulator import AutomataSimulator
+from core.file_handler import AutomataFileHandler
+from gui.automata_gui.graph import AutomataGraph
 import os
 
-class MainWindow(tk.Tk):
-    def __init__(self):
-        super().__init__()
+class AutomataWindow(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__(master)
         self.title("Simulador de Autómatas")
         self.geometry("1000x700")
         self.simulator = AutomataSimulator()
@@ -18,6 +17,7 @@ class MainWindow(tk.Tk):
         self.setup_event_bindings()
         
     def create_widgets(self):
+        # [Mismo contenido que MainWindow.create_widgets original]
         # Panel de control
         self.control_frame = ttk.LabelFrame(self, text="Control", padding=10)
         
@@ -70,6 +70,7 @@ class MainWindow(tk.Tk):
         self.automata_graph = AutomataGraph(self.canvas)
         
     def setup_layout(self):
+        # [Mismo contenido que MainWindow.setup_layout original]
         # Configuración de grid
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=2)

@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from automata import Automata
+from core.automata import Automata
 
 class AutomataFileHandler:
     @staticmethod

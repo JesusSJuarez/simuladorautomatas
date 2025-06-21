@@ -1,4 +1,4 @@
-from automata import Automata
+from core.automata import Automata
 
 class AutomataSimulator:
     def __init__(self, automata=None):

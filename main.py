@@ -1,7 +1,7 @@
-from gui.main_window import MainWindow
+from gui.main_menu import MainMenu
 
 def main():
-    app = MainWindow()
+    app = MainMenu()
     app.mainloop()
 
 if __name__ == "__main__":
