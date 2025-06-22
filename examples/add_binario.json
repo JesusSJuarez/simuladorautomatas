@@ -1,0 +1,17 @@
+{
+    "states": ["q0", "q_find_end", "q_add", "qf"],
+    "alphabet": ["0", "1"],
+    "tape_alphabet": ["0", "1", "b"],
+    "transitions": {
+        "(\"q0\", \"b\")": [["q_find_end", "b", "R"]],
+        "(\"q_find_end\", \"0\")": [["q_find_end", "0", "R"]],
+        "(\"q_find_end\", \"1\")": [["q_find_end", "1", "R"]],
+        "(\"q_find_end\", \"b\")": [["q_add", "b", "L"]],
+        "(\"q_add\", \"0\")": [["qf", "1", "S"]],
+        "(\"q_add\", \"1\")": [["q_add", "0", "L"]],
+        "(\"q_add\", \"b\")": [["qf", "1", "S"]]
+    },
+    "initial_state": "q0",
+    "blank_symbol": "b",
+    "final_states": ["qf"]
+}

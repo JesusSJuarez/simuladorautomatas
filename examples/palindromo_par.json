@@ -1,0 +1,48 @@
+{
+    "name": "PDA Palíndromos Pares (ww^R)",
+    "type": "PDA",
+    "states": ["q0", "q1", "q2"],
+    "input_alphabet": ["a", "b"],
+    "stack_alphabet": ["Z0", "A", "B"],
+    "transitions": {
+        "q0,a,Z0": [
+            ["q0", ["A", "Z0"]]
+        ],
+        "q0,a,A": [
+            ["q0", ["A", "A"]]
+        ],
+        "q0,a,B": [
+            ["q0", ["A", "B"]]
+        ],
+        "q0,b,Z0": [
+            ["q0", ["B", "Z0"]]
+        ],
+        "q0,b,A": [
+            ["q0", ["B", "A"]]
+        ],
+        "q0,b,B": [
+            ["q0", ["B", "B"]]
+        ],
+        "q0,ε,Z0": [
+            ["q1", ["Z0"]]
+        ],
+        "q0,ε,A": [
+            ["q1", ["A"]]
+        ],
+        "q0,ε,B": [
+            ["q1", ["B"]]
+        ],
+        "q1,a,A": [
+            ["q1", ["ε"]]
+        ],
+        "q1,b,B": [
+            ["q1", ["ε"]]
+        ],
+        "q1,ε,Z0": [
+            ["q2", ["Z0"]]
+        ]
+    },
+    "initial_state": "q0",
+    "initial_stack_symbol": "Z0",
+    "final_states": ["q2"]
+}

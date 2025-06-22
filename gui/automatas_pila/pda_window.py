@@ -196,7 +196,7 @@ class PDAWindow(tk.Toplevel):
     def start_full_simulation(self):
         """Inicia una simulación completa de la cadena de entrada."""
         input_str = self.input_entry.get()
-        if not input_str and not (self.simulator.pda and self.simulator.pda.is_accepted() and self.simulator.pda.current_configurations): # Allow empty string if already accepted
+        if not input_str and not (self.simulator.pda and self.simulator.pda.is_accepted() and self.simulator.pda.current_configurations):
             if not input_str:
                 messagebox.showerror("Error", "Por favor, ingrese una cadena de entrada para simular.")
             elif not self.simulator.pda:

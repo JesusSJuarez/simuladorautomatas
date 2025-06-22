@@ -1,0 +1,21 @@
+{
+    "states": ["q0", "qf"],
+    "alphabet": ["0", "1"],
+    "tape_alphabet": ["0", "1", "b"],
+    "transitions": {
+        "(\"q0\", \"0\")": [
+            ["qf", "0", "S"]
+        ],
+        "(\"q0\", \"1\")": [
+            ["q0", "1", "L"],
+            ["q0", "1", "R"]
+        ],
+        "(\"q0\", \"b\")": [
+            ["q0", "b", "L"],
+            ["q0", "b", "R"]
+        ]
+    },
+    "initial_state": "q0",
+    "blank_symbol": "b",
+    "final_states": ["qf"]
+}

@@ -1,0 +1,33 @@
+{
+    "name": "PDA A^n B^n (n >= 1)",
+    "type": "PDA",
+    "states": ["q0", "q1", "q2"],
+    "input_alphabet": ["a", "b"],
+    "stack_alphabet": ["Z0", "A"],
+    "transitions": {
+        "q0,a,Z0": [
+            ["q0", ["A", "Z0"]]
+        ],
+        "q0,a,A": [
+            ["q0", ["A", "A"]]
+        ],
+        "q0,b,A": [
+            ["q1", ["ε"]]
+        ],
+        "q1,b,A": [
+            ["q1", ["ε"]]
+        ],
+        "q1,ε,Z0": [
+            ["q2", ["Z0"]]
+        ],
+        "q2,a,Z0": [
+            ["q0", ["Z0"]]
+        ],
+        "q2,b,Z0": [
+            ["q0", ["Z0"]]
+        ]
+    },
+    "initial_state": "q0",
+    "initial_stack_symbol": "Z0",
+    "final_states": ["q2"]
+}
